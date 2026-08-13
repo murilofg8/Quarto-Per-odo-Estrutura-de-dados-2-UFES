@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 /*Abordagem Dividir e Conquistar
  Divida o problema em vários subproblemas que são similares ao
  problema original, mas possuem tamanho menor.
