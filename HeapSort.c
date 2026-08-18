@@ -1,18 +1,22 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-void maxHeapify(int A[], int tam, int i){
+void maxHeapify(int *A, int tam, int i){
     int maior;
+    int esquerda;
+    int direita;
     int aux;
 
     maior = i;
 
-    if (2 * i <= tam && A[2 * i] > A[i]){
-        maior = 2 * i;
+    esquerda = 2 * i + 1;
+    direita = 2 * i + 2;
+
+    if (esquerda < tam && A[esquerda] > A[maior]){
+        maior = esquerda;
     }
 
-    if (2 * i + 1 <= tam && A[2 * i + 1] > A[maior]){
-        maior = 2 * i + 1;
+    if (direita < tam && A[direita] > A[maior]){
+        maior = direita;
     }
 
     if (maior != i){
@@ -24,27 +28,25 @@ void maxHeapify(int A[], int tam, int i){
     }
 }
 
-
-void construirHeap(int A[], int tam){
+void construirHeap(int *A, int tam){
     int i;
 
-    for (i = tam / 2; i >= 1; i--){
+    for (i = tam / 2 - 1; i >= 0; i--){
         maxHeapify(A, tam, i);
     }
 }
 
-
-void heapSort(int A[], int tam){
+void heapSort(int *A, int tam){
     int i;
     int aux;
 
     construirHeap(A, tam);
 
-    for (i = tam; i >= 2; i--){
-        aux = A[1];
-        A[1] = A[i];
+    for (i = tam - 1; i >= 1; i--){
+        aux = A[0];
+        A[0] = A[i];
         A[i] = aux;
 
-        maxHeapify(A, i - 1, 1);
+        maxHeapify(A, i, 0);
     }
 }
