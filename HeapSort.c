@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 void maxHeapify(int A[], int tam, int i){
     int maior;
     int aux;
